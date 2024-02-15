@@ -1,8 +1,4 @@
-<script setup lang="ts">
-import { provide } from 'vue'
-
-provide('message', 'hello!')
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <div>
@@ -13,9 +9,12 @@ provide('message', 'hello!')
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <router-link to="/sample">To sample</router-link>
-  <router-link to="/user/john">To John</router-link>
-  <router-link to="/user/frank">To Frank</router-link>
+  <router-link class="link" to="/">To home</router-link>
+  <router-link class="link" to="/parent">To Parent</router-link>
+  <router-link class="link" to="/sample">To sample</router-link>
+  <router-link class="link" to="/user/john">To John</router-link>
+  <router-link class="link" to="/user/frank">To Frank</router-link>
+  <router-link class="link" to="/todos">Todos</router-link>
   <router-view></router-view>
 </template>
 
@@ -31,5 +30,9 @@ provide('message', 'hello!')
 }
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
+}
+
+.link {
+  margin-right: 12px;
 }
 </style>
