@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import type { Post } from '@/components/types.ts'
 
-defineProps<{ msg: string }>()
+withDefaults(defineProps<Post>(), { msg: 'great' })
+defineEmits<{ enlarge: [size: number] }>()
 
 const count = ref(0)
 </script>
 
 <template>
   <h3>{{ msg }}</h3>
+  <div>Published: {{ isPublished ? 'yes' : 'no' }}</div>
+
+  <button @click="$emit('enlarge', 0.2)">放大</button>
 
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>

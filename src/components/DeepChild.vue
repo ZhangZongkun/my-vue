@@ -2,7 +2,7 @@
 import { inject } from 'vue'
 import { useRouter } from 'vue-router'
 
-const msg = inject<{ text: string }>('message', { text: 'hello' })
+const msg = inject('message', { text: 'hello' })
 
 const { location, updateLocation } = inject<any>('location')
 

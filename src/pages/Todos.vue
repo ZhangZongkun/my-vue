@@ -3,22 +3,21 @@ import { ref } from 'vue'
 import { useTodosStore } from '@/stores/todos'
 
 const todosStore = useTodosStore()
-const todo = ref('')
-console.log(todosStore.filteredTodos)
-
-const select = (state: 'all' | 'finished' | 'unfinished') =>
-  (todosStore.filter = state)
+const todoAdd = ref('')
 </script>
 
 <template>
   <h3>Todos</h3>
   <div class="card">
     <div class="tabs">
-      <div class="tab" @click="select('all')">全部</div>
-      <div class="tab" @click="select('finished')">已完成</div>
-      <div class="tab" @click="select('unfinished')">未完成</div>
+      <input type="radio" id="all" value="all" v-model="todosStore.filter"/>
+      <label for="all">全部</label>
+      <input type="radio" id="finished" value="finished" v-model="todosStore.filter"/>
+      <label for="finished">已完成</label>
+      <input type="radio" id="unfinished" value="unfinished" v-model="todosStore.filter"/>
+      <label for="unfinished">未完成</label>
     </div>
-    <div v-for="todo in todosStore.todos" class="todo">
+    <div v-for="todo in todosStore.filteredTodos" class="todo">
       <div class="check" @click="todo.isFinished = !todo.isFinished">
         {{ todo.isFinished ? '选中' : '取消' }}
       </div>
@@ -27,9 +26,8 @@ const select = (state: 'all' | 'finished' | 'unfinished') =>
       </div>
       <div class="delete">删除</div>
     </div>
-    <input type="text" v-model="todo" />
-    <button @click="todosStore.addTodo(todo)">Add</button>
-    <div>{{ todosStore.filteredTodos }}</div>
+    <input type="text" v-model="todoAdd" />
+    <button @click="todosStore.addTodo(todoAdd)">Add</button>
   </div>
 </template>
 

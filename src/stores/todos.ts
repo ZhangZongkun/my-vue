@@ -14,11 +14,11 @@ export const useTodosStore = defineStore('todos', () => {
   )
   const filteredTodos = computed(() => {
     if (filter.value == 'finished') {
-      return finishedTodos
+      return finishedTodos.value
     } else if (filter.value == 'unfinished') {
-      return unfinishedTodos
+      return unfinishedTodos.value
     }
-    return todos
+    return todos.value
   })
 
   const addTodo = (text: string) => {
